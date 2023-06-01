@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reto 4</title>
+  <script>
+    function comprobarRespuesta() {
+      var nombreSeleccionado = document.getElementById('selectNombre').value;
+      var apellidoSeleccionado = document.getElementById('selectApellido').value;
+      var actividadSeleccionada = document.getElementById('selectActividad').value;
+
+      var nombreCorrecto = "tatiana";
+      var apellidoCorrecto = "fernandez";
+      var actividadCorrecta = "Programación";
+
+      if (
+        nombreSeleccionado === nombreCorrecto &&
+        apellidoSeleccionado === apellidoCorrecto &&
+        actividadSeleccionada === actividadCorrecta
+      ) {
+        alert("La respuesta es correcta");
+      } else {
+        alert("La respuesta es incorrecta");
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Reto 4 </h1>
+  
+  <label for="selectNombre">Selecciona un nombre:</label>
+  <select id="selectNombre">
+    <option value="tatiana">tatiana</option>
+    <option value="Jenifer">Jenifer</option>
+    <option value="andrea">andrea</option>
+  </select>
+  
+  <label for="selectApellido">Selecciona un apellido:</label>
+  <select id="selectApellido">
+    <option value="Doe">uldarico</option>
+    <option value="Smith">hernandez</option>
+    <option value="Johnson">fernandez</option>
+  </select>
+  
+  <label for="selectActividad">Selecciona una actividad:</label>
+  <select id="selectActividad">
+    <option value="Programación">Programación</option>
+    <option value="Diseño">Diseño</option>
+    <option value="Marketing">ventas</option>
+  </select>
+  
+  <button onclick="comprobarRespuesta()">Comprobar</button>
+</body>
+</html>

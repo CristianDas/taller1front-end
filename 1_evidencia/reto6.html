@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reto 6 - Formulario de Registro de Usuario</title>
+</head>
+<body>
+  <form id="registration-form" onsubmit="validateForm(event)">
+    <div>
+      <label for="document-type">Tipo de documento:</label>
+      <select id="document-type" required>
+        <option value="">Seleccionar...</option>
+        <option value="cc">Cédula de ciudadanía</option>
+        <option value="ti">Tarjeta de identidad</option>
+        <option value="ce">Cédula de extranjería</option>
+      </select>
+    </div>
+    <div>
+      <label for="document-number">No. Documento:</label>
+      <input type="text" id="document-number" pattern="[0-9]{5,}" required>
+    </div>
+    <div>
+      <label for="first-name">Nombre:</label>
+      <input type="text" id="first-name" pattern="[a-zA-Z0-9]+" required>
+    </div>
+    <div>
+      <label for="last-name">Apellido:</label>
+      <input type="text" id="last-name" pattern="[a-zA-Z0-9]+" required>
+    </div>
+    <div>
+      <label for="birthdate">Fecha Nacimiento:</label>
+      <input type="date" id="birthdate" required>
+    </div>
+    <div>
+      <label for="email">Correo electrónico:</label>
+      <input type="text" id="email" pattern=".+@misena\.edu\.co" required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{10,}" required>
+    </div>
+    <div>
+      <label for="confirm-password">Comprobar password:</label>
+      <input type="password" id="confirm-password" required>
+    </div>
+    <div>
+      <input type="checkbox" id="terms-accepted" required>
+      <label for="terms-accepted">Aceptar Términos de uso</label>
+      <button onclick="showTermsModal()">Ver Términos de uso</button>
+    </div>
+    <div>
+      <button type="submit">Registrar</button>
+    </div>
+  </form>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="modal-close" class="modal-close">&times;</span>
+      <h3>Términos de uso</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris id nibh vitae nunc scelerisque venenatis. Aenean scelerisque mi a risus posuere lacinia. In vel mauris at metus interdum iaculis. Curabitur sit amet sapien neque. Vestibulum ac tincidunt nisi. Integer dapibus velit at pulvinar tempor. Nunc ac volutpat odio.</p>
+    </div>
+  </div>
+
+  <script>
+    function validateForm(event) {
+      event.preventDefault();
+
+      var documentType = document.getElementById("document-type").value;
+      var documentNumber = document.getElementById("document-number").value;
+      var firstName = document.getElementById("first-name").value;
+      var lastName = document.getElementById("last-name").value;
+      var birthdate = new Date(document.getElementById("birthdate").value);
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("confirm-password").value;
+      var termsAccepted = document.getElementById("terms-accepted").checked;
+
+      if (!documentType || !documentNumber || !firstName || !lastName || !birthdate || !email || !password || !confirmPassword || !termsAccepted) {
+        alert("Todos los campos son obligatorios.");
+        return;
+      }
+
+      if (!/^[0-9]{5,}$/.test(documentNumber)) {
+        alert("El campo No. Documento solo permite números y debe tener al menos 5 caracteres.");
+        return;
+      }
+
+      if (!/^[a-zA-Z0-9]+$/.test(firstName) || !/^[a-zA-Z0-9]+$/.test(lastName)) {
+        alert("Los campos Nombre y Apellido solo admiten caracteres alfanuméricos.");
+        return;
+      }
+
+      var minBirthdate = new Date("2002-01-01");
+      if (birthdate <= minBirthdate) {
+        alert("La fecha de nacimiento debe ser posterior al año 2002.");
+        return;
+      }
+
+      if (!/.+@misena\.edu\.co$/.test(email)) {
+        alert("El campo Correo electrónico solo permite correos con el dominio @misena.edu.co");
+        return;
+      }
+
+      if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{10,}/.test(password)) {
+        alert("El campo Password debe incluir al menos una letra mayúscula, una letra minúscula, un número, un carácter especial y tener al menos 10 caracteres.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert("El password y su confirmación no coinciden.");
+        return;
+      }
+
+      alert("Registro exitoso!");
+      document.getElementById("registration-form").reset();
+    }
+
+    function showTermsModal() {
+      var modal = document.getElementById("modal");
+      var closeButton = document.getElementById("modal-close");
+
+      closeButton.onclick = function() {
+        modal.style.display = "none";
+      };
+
+      modal.style.display = "block";
+    }
+  </script>
+</body>
+</html>

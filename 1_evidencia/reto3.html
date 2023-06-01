@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reto 3 - Tipo de Triángulo</title>
+  <script>
+    function determinarTipoTriangulo() {
+      var lado1 = parseFloat(document.getElementById('inputLado1').value);
+      var lado2 = parseFloat(document.getElementById('inputLado2').value);
+      var lado3 = parseFloat(document.getElementById('inputLado3').value);
+      var tipoTriangulo;
+
+      if (lado1 === lado2 && lado2 === lado3) {
+        tipoTriangulo = "Equilátero";
+      } else if (lado1 === lado2 || lado1 === lado3 || lado2 === lado3) {
+        tipoTriangulo = "Isósceles";
+      } else {
+        tipoTriangulo = "Escaleno";
+      }
+
+      alert("El triángulo es de tipo: " + tipoTriangulo);
+    }
+  </script>
+</head>
+<body>
+  <h1>Reto 3 - Tipo de Triángulo</h1>
+  
+  <label for="inputLado1">Ingresa el valor del lado 1:</label>
+  <input type="text" id="inputLado1">
+  
+  <label for="inputLado2">Ingresa el valor del lado 2:</label>
+  <input type="text" id="inputLado2">
+  
+  <label for="inputLado3">Ingresa el valor del lado 3:</label>
+  <input type="text" id="inputLado3">
+  
+  <button onclick="determinarTipoTriangulo()">Determinar tipo de triángulo</button>
+</body>
+</html>

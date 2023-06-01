@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reto 1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+  </style>
+  <script>
+    function mostrarResultado() {
+      var palabra = document.getElementById('inputPalabra').value;
+      var opcion = document.getElementById('selectOpcion').value;
+      var resultado;
+
+      switch (opcion) {
+        case 'longitud':
+          resultado = palabra.length;
+          break;
+        case 'mayusculas':
+          resultado = palabra.toUpperCase();
+          break;
+        case 'minusculas':
+          resultado = palabra.toLowerCase();
+          break;
+        case 'primerCaracter':
+          resultado = palabra.charAt(0);
+          break;
+        default:
+          resultado = 'Opción inválida';
+      }
+
+      alert(resultado);
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Reto 1 </h1>
+  
+    <label for="inputPalabra">Ingresa una palabra:</label>
+    <input type="text" id="inputPalabra">
+  
+    <label for="selectOpcion">Selecciona una opción:</label>
+    <select id="selectOpcion">
+      <option value="longitud">Longitud de la palabra</option>
+      <option value="mayusculas">Convertir a mayúsculas</option>
+      <option value="minusculas">Convertir a minúsculas</option>
+      <option value="primerCaracter">Primer carácter</option>
+    </select>
+  
+    <button onclick="mostrarResultado()">Mostrar resultado</button>
+  </div>
+</body>
+</html>

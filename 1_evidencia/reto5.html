@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reto 5 - Cálculo de Perímetro y Área</title>
+</head>
+<body>
+  <div class="card" data-name="Círculo" data-type="circle">
+    <h2>Círculo</h2>
+    <button onclick="showPerimeterModal(this)">Perímetro</button>
+    <button onclick="showAreaModal(this)">Área</button>
+  </div>
+
+  <div class="card" data-name="Triángulo" data-type="triangle">
+    <h2>Triángulo</h2>
+    <button onclick="showPerimeterModal(this)">Perímetro</button>
+    <button onclick="showAreaModal(this)">Área</button>
+  </div>
+
+  <div class="card" data-name="Rectángulo" data-type="rectangle">
+    <h2>Rectángulo</h2>
+    <button onclick="showPerimeterModal(this)">Perímetro</button>
+    <button onclick="showAreaModal(this)">Área</button>
+  </div>
+
+  <div class="card" data-name="Cuadrado" data-type="square">
+    <h2>Cuadrado</h2>
+    <button onclick="showPerimeterModal(this)">Perímetro</button>
+    <button onclick="showAreaModal(this)">Área</button>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="modal-close" class="modal-close">&times;</span>
+      <h3 id="modal-title"></h3>
+      <input type="number" id="modal-radius" placeholder="Radio">
+      <input type="number" id="modal-side1" placeholder="Lado 1">
+      <input type="number" id="modal-side2" placeholder="Lado 2">
+      <input type="number" id="modal-side3" placeholder="Lado 3">
+      <input type="number" id="modal-width" placeholder="Ancho">
+      <input type="number" id="modal-height" placeholder="Alto">
+      <input type="number" id="modal-side" placeholder="Lado">
+      <button id="modal-calculate">Calcular</button>
+      <p id="modal-result"></p>
+    </div>
+  </div>
+
+  <script>
+    function showPerimeterModal(shape) {
+      var modal = document.getElementById("modal");
+      var shapeName = shape.getAttribute("data-name");
+      var shapeType = shape.getAttribute("data-type");
+      var shapeTitle = document.getElementById("modal-title");
+      var shapeResult = document.getElementById("modal-result");
+      var shapeCalculateButton = document.getElementById("modal-calculate");
+      var shapeCloseButton = document.getElementById("modal-close");
+
+      shapeTitle.textContent = "Cálculo del Perímetro (" + shapeName + ")";
+      shapeResult.textContent = "";
+
+      shapeCalculateButton.onclick = function() {
+        var result;
+        if (shapeType === "circle") {
+          var radius = parseFloat(document.getElementById("modal-radius").value);
+          result = 2 * Math.PI * radius;
+        } else if (shapeType === "triangle") {
+          var side1 = parseFloat(document.getElementById("modal-side1").value);
+          var side2 = parseFloat(document.getElementById("modal-side2").value);
+          var side3 = parseFloat(document.getElementById("modal-side3").value);
+          result = side1 + side2 + side3;
+        } else if (shapeType === "rectangle") {
+          var width = parseFloat(document.getElementById("modal-width").value);
+          var height = parseFloat(document.getElementById("modal-height").value);
+          result = 2 * (width + height);
+        } else if (shapeType === "square") {
+          var side = parseFloat(document.getElementById("modal-side").value);
+          result = 4 * side;
+        }
+
+        shapeResult.textContent = "El perímetro es: " + result.toFixed(2);
+      };
+
+      shapeCloseButton.onclick = function() {
+        modal.style.display = "none";
+      };
+
+      modal.style.display = "block";
+    }
+
+    function showAreaModal(shape) {
+      var modal = document.getElementById("modal");
+      var shapeName = shape.getAttribute("data-name");
+      var shapeType = shape.getAttribute("data-type");
+      var shapeTitle = document.getElementById("modal-title");
+      var shapeResult = document.getElementById("modal-result");
+      var shapeCalculateButton = document.getElementById("modal-calculate");
+      var shapeCloseButton = document.getElementById("modal-close");
+
+      shapeTitle.textContent = "Cálculo del Área (" + shapeName + ")";
+      shapeResult.textContent = "";
+
+      shapeCalculateButton.onclick = function() {
+        var result;
+        if (shapeType === "circle") {
+          var radius = parseFloat(document.getElementById("modal-radius").value);
+          result = Math.PI * radius * radius;
+        } else if (shapeType === "triangle") {
+          var base = parseFloat(document.getElementById("modal-base").value);
+          var height = parseFloat(document.getElementById("modal-height").value);
+          result = 0.5 * base * height;
+        } else if (shapeType === "rectangle") {
+          var width = parseFloat(document.getElementById("modal-width").value);
+          var height = parseFloat(document.getElementById("modal-height").value);
+          result = width * height;
+        } else if (shapeType === "square") {
+          var side = parseFloat(document.getElementById("modal-side").value);
+          result = side * side;
+        }
+
+        shapeResult.textContent = "El área es: " + result.toFixed(2);
+      };
+
+      shapeCloseButton.onclick = function() {
+        modal.style.display = "none";
+      };
+
+      modal.style.display = "block";
+    }
+  </script>
+</body>
+</html>

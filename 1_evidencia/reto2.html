@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>reto 2</title>
+  <script>
+    function convertirTemperatura() {
+      var temperatura = parseFloat(document.getElementById('inputTemperatura').value);
+      var convertirDe = document.getElementById('selectConvertirDe').value;
+      var convertirA = document.getElementById('selectConvertirA').value;
+      var resultado;
+
+      if (convertirDe === 'fahrenheit' && convertirA === 'celsius') {
+        resultado = (temperatura - 32) * 5 / 9;
+      } else if (convertirDe === 'fahrenheit' && convertirA === 'kelvin') {
+        resultado = (temperatura - 32) * 5 / 9 + 273.15;
+      } else if (convertirDe === 'celsius' && convertirA === 'fahrenheit') {
+        resultado = temperatura * 9 / 5 + 32;
+      } else if (convertirDe === 'celsius' && convertirA === 'kelvin') {
+        resultado = temperatura + 273.15;
+      } else if (convertirDe === 'kelvin' && convertirA === 'fahrenheit') {
+        resultado = (temperatura - 273.15) * 9 / 5 + 32;
+      } else if (convertirDe === 'kelvin' && convertirA === 'celsius') {
+        resultado = temperatura - 273.15;
+      } else {
+        resultado = 'Conversión no válida';
+      }
+
+      alert(resultado.toFixed(2));
+    }
+  </script>
+</head>
+<body>
+  <h1>Reto 2 </h1>
+  
+  <label for="inputTemperatura">Ingresa la temperatura en grados:</label>
+  <input type="text" id="inputTemperatura">
+  
+  <label for="selectConvertirDe">Vas a convertir de:</label>
+  <select id="selectConvertirDe">
+    <option value="fahrenheit">Fahrenheit</option>
+    <option value="celsius">Celsius</option>
+    <option value="kelvin">Kelvin</option>
+  </select>
+  
+  <label for="selectConvertirA">Deseas convertir a:</label>
+  <select id="selectConvertirA">
+    <option value="fahrenheit">Fahrenheit</option>
+    <option value="celsius">Celsius</option>
+    <option value="kelvin">Kelvin</option>
+  </select>
+  
+  <button onclick="convertirTemperatura()">Convertir</button>
+</body>
+</html>
